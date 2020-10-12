@@ -10,7 +10,6 @@ public class JapMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
-        // ** 회원 등록 ** //
         EntityManager em = emf.createEntityManager(); // 트랜잭션 마다 생성하기
 
         EntityTransaction tx = em.getTransaction();  // 트랜잭션 받아오기
@@ -18,7 +17,7 @@ public class JapMain {
 
         try {
             Member findMember = em.find(Member.class, 2L);
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+            List<Member> result = em.createQuery("select m from Member as m", Member.class) // JPQL
                                     .setFirstResult(1)
                                     .setMaxResults(10)
                                     .getResultList();
