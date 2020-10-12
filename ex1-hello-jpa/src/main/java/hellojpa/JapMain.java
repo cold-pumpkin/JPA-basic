@@ -16,12 +16,9 @@ public class JapMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("Chulsoo");
-
-            em.persist(member); // save
-
+            Member findMember = em.find(Member.class, 1L);
+            System.out.println(findMember.getId());
+            System.out.println(findMember.getName());
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
