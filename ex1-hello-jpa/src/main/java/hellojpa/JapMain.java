@@ -16,11 +16,8 @@ public class JapMain {
         tx.begin();
 
         try {
-            Member member1 = new Member(10L, "Hayoung");
-            Member member2 = new Member(11L, "Chanjoong");
-
-            em.persist(member1);
-            em.persist(member2);  // 쓰기 지연 SQL 저장소
+            Member member = em.find(Member.class, 10L);
+            member.setName("Philip");  // 변경감지 (dirty checking)
 
             System.out.println("========================");
 
