@@ -16,13 +16,6 @@ public class JapMain {
         tx.begin();
 
         try {
-            Member member = em.find(Member.class, 10L);
-            member.setName("Philip Park");  // 영속 상태 - dirty checking 가능
-
-            em.detach(member);  // 준영속 상태  -> commit해도 update 동작 안함
-
-            System.out.println("========================");
-
             tx.commit();  // flush - commit
         } catch (Exception e) {
             tx.rollback();
