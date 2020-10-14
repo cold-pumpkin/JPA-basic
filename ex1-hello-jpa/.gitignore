@@ -93,6 +93,10 @@ fabric.properties
 # Compiled class file
 *.class
 
+# Compliled files
+/target/
+**/target
+
 # Log file
 *.log
 
