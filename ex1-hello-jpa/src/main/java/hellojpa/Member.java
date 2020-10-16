@@ -15,8 +15,12 @@ public class Member {
     @Column(name = "USER_NAME")
     private String username;
 
-    @Column(name = "TEAM_ID")  // 데이터 중심 설계
-    private Long teamId;
+//    @Column(name = "TEAM_ID")  // 데이터 중심 설계
+//    private Long teamId;
+
+    @ManyToOne  // 연관관계 매핑 (여러명의 member가 하나의 team에 소속)
+    @JoinColumn(name = "TEAM_ID")  // join할 컬럼 명시
+    private Team team;
 
     private Integer age;
 
@@ -51,12 +55,12 @@ public class Member {
         this.username = username;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Integer getAge() {
