@@ -16,6 +16,11 @@ public class JapMain {
         tx.begin();
 
         try {
+            // 팀 생성
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
             tx.commit();  // flush - commit
         } catch (Exception e) {
             tx.rollback();
