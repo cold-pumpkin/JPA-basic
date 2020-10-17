@@ -18,7 +18,7 @@ public class Member {
 //    @Column(name = "TEAM_ID")  // 데이터 중심 설계
 //    private Long teamId;
 
-    @ManyToOne  // 연관관계 매핑 (여러명의 member가 하나의 team에 소속)
+    @ManyToOne  // 연관관계 매핑 (여러명의 member가 하나의 team에 소속) - 연관관계 주인
     @JoinColumn(name = "TEAM_ID")  // join할 컬럼 명시
     private Team team;
 
@@ -59,8 +59,9 @@ public class Member {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void changeTeam(Team team) {
         this.team = team;
+        team.getMembers().add(this);  // 연관관계 편의 메소드
     }
 
     public Integer getAge() {
