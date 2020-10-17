@@ -27,7 +27,7 @@ public class JapMain {
             member.setUsername("chanho");
 
             // 팀에 멤버 속하게 하기
-            member.setTeam(team);
+            member.changeTeam(team);  // 연관관계 편의 메소드 추가 : team에도 member 추가
             em.persist(member);
 
             em.flush();
