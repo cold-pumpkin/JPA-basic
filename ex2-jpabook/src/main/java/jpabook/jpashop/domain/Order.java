@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import javax.management.remote.NotificationResult;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,13 +21,19 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")  // 연관관계 주인 명시
+    @OneToMany(mappedBy = "order")  // 양방향 - 연관관계 주인 명시
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    // 연관관계 편의 메소드
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);  // 양방향 연관관계 셋팅
+    }
 
     public Long getId() {
         return id;
@@ -67,4 +74,5 @@ public class Order {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
+
 }
