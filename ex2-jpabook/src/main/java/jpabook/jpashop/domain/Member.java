@@ -14,6 +14,10 @@ public class Member {
 
     private String name;
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
     private String city;
 
     private String street;
